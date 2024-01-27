@@ -7,6 +7,7 @@ import AppError from '../../errors/AppError';
 /*
 import { Request, Response } from 'express';
 import * as fooServices from './foo.service';
+import catchAsync from './../../utils/catchAsync';
 */
 const getAllProduct = catchAsync(async (req, res) => {
   const result = await productServices.getAllProductFromDB();
@@ -30,6 +31,19 @@ const createProduct = catchAsync(async (req, res) => {
   });
 });
 
+
+const singleProduct =  catchAsync(async (req, res) => {
+  const id = req.params.id;
+  
+  const product = await productServices.findProductById(id);
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: 'Product is delete successfully',
+    data: product,
+  });
+})
+
 const deleteProduct = catchAsync(async (req, res) => {
     const id = req.params.id;
   
@@ -40,6 +54,19 @@ const deleteProduct = catchAsync(async (req, res) => {
     }
   
     const result = await productServices.deleteProductFromDB(id);
+  
+    sendResponse(res, {
+      statusCode: httpStatus.OK,
+      success: true,
+      message: 'Product is delete successfully',
+      data: result,
+    });
+  });
+
+const bulkDelete = catchAsync(async (req, res) => {
+    const ids = req.body.ids;
+
+    const result = await productServices.deleteBulkProductsFromDB(ids);
   
     sendResponse(res, {
       statusCode: httpStatus.OK,
@@ -75,5 +102,7 @@ export const productControllers = {
   createProduct,
   deleteProduct,
   updateProduct,
-  getAllProduct
+  getAllProduct,
+  bulkDelete,
+  singleProduct
 };

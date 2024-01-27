@@ -8,7 +8,8 @@ export interface TRegister extends Document {
     // _id: string;
     email: string;
     password: string;
-    role: 'user' | 'admin';
+    username: string;
+    role: string;
     status: 'block' | 'in-progress';
     isDeleted: boolean;
   }

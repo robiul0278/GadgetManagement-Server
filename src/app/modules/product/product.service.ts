@@ -1,13 +1,11 @@
 import { TProduct } from './product.interface';
 import { ProductModel } from './product.model';
 
-
 const getAllProductFromDB = async () => {
-const result = await ProductModel.find()
+  const result = await ProductModel.find();
 
-return result
-}
-
+  return result;
+};
 
 const createProductIntoDB = async (userData: TProduct) => {
   const result = await ProductModel.create(userData);
@@ -22,20 +20,20 @@ const deleteProductFromDB = async (id: string) => {
     { new: true },
   );
 };
+const deleteBulkProductsFromDB = async (ids: string[]) => {
+  return await ProductModel.updateMany({ _id: { $in: ids } }, { isDeleted: true });
+};
 
 const findProductById = async (id: string) => {
-    return await ProductModel.findById(id);
-  };
+  return await ProductModel.findById(id);
+};
 
-
-
-  const updateProductFromDB = async (id: string, payload: Partial<TProduct>) => {
-    const result = await ProductModel.findByIdAndUpdate(id, payload, {
-      new: true,
-    })
-    return result
-  }
-
+const updateProductFromDB = async (id: string, payload: Partial<TProduct>) => {
+  const result = await ProductModel.findByIdAndUpdate(id, payload, {
+    new: true,
+  });
+  return result;
+};
 
 export const productServices = {
   createProductIntoDB,
@@ -43,4 +41,5 @@ export const productServices = {
   findProductById,
   updateProductFromDB,
   getAllProductFromDB,
+  deleteBulkProductsFromDB
 };

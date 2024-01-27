@@ -2,6 +2,7 @@ import httpStatus from "http-status";
 import catchAsync from "../../utils/catchAsync";
 import { authServices } from "./auth.service";
 import sendResponse from "../../utils/sendResponse";
+import config from "../../config";
 
 /*
 import { Request, Response } from 'express';
@@ -22,7 +23,13 @@ const register = catchAsync(async (req, res) => {
 
 
   const login = catchAsync(async (req, res) => {
-    const {user, token} = await authServices.login(req.body);
+    const result = await authServices.login(req.body);
+
+    const {refreshToken, accessToken, user} = result;
+    res.cookie('refreshToken', refreshToken, {
+      secure: config.node_env === 'production',
+      httpOnly: true
+    })
   
     // const {password, ...others} = user.toObject()
   
@@ -32,8 +39,21 @@ const register = catchAsync(async (req, res) => {
       message: "User login successful",
       data: {
         user:user,
-        token
+        accessToken
       },
+    });
+  });
+
+
+  const refreshToken = catchAsync(async (req, res) => {
+    const { refreshToken } = req.cookies;
+    const result = await authServices.refreshToken(refreshToken);
+  
+    sendResponse(res, {
+      statusCode: httpStatus.OK,
+      success: true,
+      message: 'Access token is retrieved successfully!',
+      data: result,
     });
   });
 
@@ -41,4 +61,5 @@ const register = catchAsync(async (req, res) => {
   export const authControllers = {
     register,
     login,
+    refreshToken,
 }

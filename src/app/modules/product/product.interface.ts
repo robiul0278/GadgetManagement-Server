@@ -2,7 +2,7 @@
 
 export interface TProduct {
     name: string;
-    price: number;
+    price:number;
     quantity: number;
     isDeleted: false;
     release_date?: Date;
@@ -12,5 +12,6 @@ export interface TProduct {
     operating_system: string;
     connectivity: string;
     power_source: string;
-    features: string[]; // Assuming features are simple strings
+    features: string; 
+    // Assuming features are simple strings
   };

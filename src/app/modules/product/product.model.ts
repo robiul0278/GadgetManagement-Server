@@ -19,9 +19,9 @@ const productSchema = new Schema<TProduct>(
       type: Boolean,
       default: false,
     },
-    release_date: {
-      type: Date,
-    },
+    // release_date: {
+    //   type: Date,
+    // },
     brand: {
       type: String,
       required: true,
@@ -46,12 +46,10 @@ const productSchema = new Schema<TProduct>(
       type: String,
       required: true,
     },
-    features: [
-      {
-        type: String,
-        required: true,
-      },
-    ],
+    features: {
+      type: String,
+      required: true,
+    },
   },
   {
     timestamps: true,

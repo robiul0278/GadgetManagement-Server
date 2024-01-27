@@ -8,6 +8,8 @@ const router = express.Router();
 router.get('/', productControllers.getAllProduct);
 router.post('/create-product',validateRequest(productValidationSchema.createProductValidationSchema), productControllers.createProduct);
 router.put('/delete-product/:id', productControllers.deleteProduct);
+router.put('/bulk-delete', productControllers.bulkDelete);
+router.get('/single-product/:id', productControllers.singleProduct);
 router.put('/update-product/:id',validateRequest(productValidationSchema.productUpdateValidationSchema), productControllers.updateProduct);
 
 export const productRoutes = router;
