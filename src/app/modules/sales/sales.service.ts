@@ -3,7 +3,6 @@ import { SaleModel } from "./sales.model";
 
 const getSaleProductFromDB = async () => {
     const result = await SaleModel.find();
-  
     return result;
   };
   
