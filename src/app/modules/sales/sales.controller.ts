@@ -6,6 +6,8 @@ import { saleProductServices } from "./sales.service";
   
 const getSaleProduct = catchAsync(async (req, res) => {
   // const { filter } = req.query;
+  // const { filter } = req.query;
+  // const { filter } = req.query;
   const result = await saleProductServices.getSaleProductFromDB();
 
   // if (filter) {
