@@ -5,7 +5,6 @@ import { userValidation } from './auth.validation';
 
 const router = express.Router();
 
-// Create a new category
 router.post(
   '/register',
   validateRequest(userValidation.userValidationSchema),
