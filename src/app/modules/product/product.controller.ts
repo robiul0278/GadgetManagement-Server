@@ -4,13 +4,10 @@ import sendResponse from '../../utils/sendResponse';
 import { productServices } from './product.service';
 import AppError from '../../errors/AppError';
 
-/*
-import { Request, Response } from 'express';
-import * as fooServices from './foo.service';
-import catchAsync from './../../utils/catchAsync';
-*/
+
 const getAllProduct = catchAsync(async (req, res) => {
-  const result = await productServices.getAllProductFromDB();
+  const { search } = req.query;
+  const result = await productServices.getAllProductFromDB(search);
 
   sendResponse(res, {
     success: true,

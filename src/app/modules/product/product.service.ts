@@ -1,11 +1,38 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { TProduct } from './product.interface';
 import { ProductModel } from './product.model';
 
-const getAllProductFromDB = async () => {
-  const result = await ProductModel.find();
+// const getAllProductFromD = async () => {
+//   const result = await ProductModel.find();
+//   return result;
+// };
 
+const getAllProductFromDB = async (searchQuery: any) => {
+  let query = {};
+
+  if (searchQuery) {
+    // Create a regular expression to perform a case-insensitive search
+    const regex = new RegExp(searchQuery, 'i');
+
+    // Define the search criteria for each field
+    query = {
+      $or: [
+        { name: regex },
+        { brand: regex },
+        { model_number: regex },
+        { category: regex },
+        { operating_system: regex },
+        { connectivity: regex },
+        { power_source: regex },
+        { features: regex },
+      ],
+    };
+  }
+
+  const result = await ProductModel.find(query);
   return result;
 };
+
 
 const createProductIntoDB = async (userData: TProduct) => {
   const result = await ProductModel.create(userData);

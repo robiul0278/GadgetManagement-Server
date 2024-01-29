@@ -13,5 +13,4 @@ export interface TProduct {
     connectivity: string;
     power_source: string;
     features: string; 
-    // Assuming features are simple strings
   };
