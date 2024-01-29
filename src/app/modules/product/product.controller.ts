@@ -3,19 +3,25 @@ import catchAsync from '../../utils/catchAsync';
 import sendResponse from '../../utils/sendResponse';
 import { productServices } from './product.service';
 import AppError from '../../errors/AppError';
-
+// import { TFilters } from '../../utils/g.types';
 
 const getAllProduct = catchAsync(async (req, res) => {
   const { search } = req.query;
-  const result = await productServices.getAllProductFromDB(search);
+  const filters = req.query; // Retrieve all query parameters as filters
+
+  const result = await productServices.getAllProductFromDB(
+    search as string,
+    filters
+  );
 
   sendResponse(res, {
     success: true,
     statusCode: httpStatus.CREATED,
-    message: 'Product Retrieved successfully',
+    message: "Product Retrieved successfully",
     data: result,
   });
 });
+
 
 const createProduct = catchAsync(async (req, res) => {
   const result = await productServices.createProductIntoDB(req.body);

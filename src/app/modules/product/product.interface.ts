@@ -5,7 +5,7 @@ export interface TProduct {
     price:number;
     quantity: number;
     isDeleted: false;
-    release_date?: Date;
+    release_date: string;
     brand: string;
     model_number: string;
     category: string;

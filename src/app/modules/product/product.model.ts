@@ -47,6 +47,9 @@ const productSchema = new Schema<TProduct>(
       type: String,
       required: true,
     },
+    release_date: {
+      type: String
+    }
   },
   {
     timestamps: true,

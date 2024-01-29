@@ -1,20 +1,15 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import { TFilters } from '../../utils/g.types';
 import { TProduct } from './product.interface';
 import { ProductModel } from './product.model';
 
-// const getAllProductFromD = async () => {
-//   const result = await ProductModel.find();
-//   return result;
-// };
 
-const getAllProductFromDB = async (searchQuery: any) => {
-  let query = {};
+
+const getAllProductFromDB = async (searchQuery: string | undefined, filters: TFilters | undefined): Promise<TProduct[]> => {
+  let query: any = {};
 
   if (searchQuery) {
-    // Create a regular expression to perform a case-insensitive search
     const regex = new RegExp(searchQuery, 'i');
-
-    // Define the search criteria for each field
     query = {
       $or: [
         { name: regex },
@@ -29,9 +24,42 @@ const getAllProductFromDB = async (searchQuery: any) => {
     };
   }
 
-  const result = await ProductModel.find(query);
+  if (filters) {
+    if (filters.priceRange) {
+      query.price = { $gte: filters.priceRange.min, $lte: filters.priceRange.max };
+    }
+    if (filters.releaseDate) {
+      query.release_date = { $gte: new Date(filters.releaseDate.min), $lte: new Date(filters.releaseDate.max) };
+    }
+    if (filters.brand) {
+      query.brand = filters.brand;
+    }
+    if (filters.modelNumber) {
+      query.model_number = filters.modelNumber;
+    }
+    if (filters.category) {
+      query.category = filters.category;
+    }
+    if (filters.operatingSystem) {
+      query.operating_system = filters.operatingSystem;
+    }
+    if (filters.connectivity) {
+      query.connectivity = filters.connectivity;
+    }
+    if (filters.powerSource) {
+      query.power_source = filters.powerSource;
+    }
+    if (filters.features) {
+      const featureRegex = new RegExp(filters.features, 'i');
+      query.features = featureRegex;
+    }
+  }
+
+  const result: TProduct[] = await ProductModel.find(query);
   return result;
 };
+
+
 
 
 const createProductIntoDB = async (userData: TProduct) => {
