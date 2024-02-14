@@ -14,6 +14,7 @@ body: z.object({
     connectivity: z.string(),
     power_source: z.string(),
     features: z.string(),
+    // image: z.string(),
 }),
 })
 

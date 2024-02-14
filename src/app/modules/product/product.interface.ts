@@ -13,4 +13,5 @@ export interface TProduct {
     connectivity: string;
     power_source: string;
     features: string; 
+    image: string;
   };

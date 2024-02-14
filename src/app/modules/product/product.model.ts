@@ -49,6 +49,10 @@ const productSchema = new Schema<TProduct>(
     },
     release_date: {
       type: String
+    },
+    image: {
+      type: String,
+      default: ''
     }
   },
   {

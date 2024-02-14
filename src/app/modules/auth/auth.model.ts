@@ -22,7 +22,8 @@ const userSchema = new Schema<TRegister, UserModel>(
     },
     role: {
       type: String,
-      default: 'user',
+      enum: ['user', 'manager'],
+      default: 'user'
     },
     status: {
       type: String,

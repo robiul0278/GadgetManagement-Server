@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { TFilters } from '../../utils/g.types';
+import { sendImageToCloudinary } from '../../utils/sendImagetoCloudinary';
 import { TProduct } from './product.interface';
 import { ProductModel } from './product.model';
 
@@ -62,7 +63,17 @@ const getAllProductFromDB = async (searchQuery: string | undefined, filters: TFi
 
 
 
-const createProductIntoDB = async (userData: TProduct) => {
+const createProductIntoDB = async (file: any,userData: TProduct) => {
+
+  if (file) {
+    const imageName = file?.filename;
+    const path = file?.path
+    
+  //send image to cloudinary
+    const {secure_url} = await sendImageToCloudinary(imageName,path);
+    userData.image = secure_url as string;
+  }
+
   const result = await ProductModel.create(userData);
 
   return result;
