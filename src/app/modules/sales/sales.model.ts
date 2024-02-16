@@ -10,7 +10,11 @@ const productSchema = new Schema<TSales>(
     date: {
       type: String,
     },
-    quantity: {
+    contact_number: {
+      type: Number,
+      required: true,
+    },
+    total_price: {
       type: Number,
       required: true,
     },

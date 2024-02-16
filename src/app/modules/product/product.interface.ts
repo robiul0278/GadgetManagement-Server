@@ -1,3 +1,4 @@
+import { Types } from "mongoose";
 
 
 export interface TProduct {
@@ -13,5 +14,6 @@ export interface TProduct {
     connectivity: string;
     power_source: string;
     features: string; 
-    image: string;
+    image?: string;
+    user: Types.ObjectId;
   };

@@ -6,7 +6,8 @@ export const productValidation = z.object({
 body: z.object({
     name: z.string(),
     date: z.string().optional(),
-    quantity: z.number(),
+    contact_number: z.number(),
+    total_price: z.number(),
 
 }),
 })

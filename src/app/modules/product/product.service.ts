@@ -56,7 +56,7 @@ const getAllProductFromDB = async (searchQuery: string | undefined, filters: TFi
     }
   }
 
-  const result: TProduct[] = await ProductModel.find(query);
+  const result: TProduct[] = await ProductModel.find(query).populate('user');
   return result;
 };
 

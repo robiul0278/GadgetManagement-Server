@@ -1,6 +1,7 @@
 
 export interface TSales {
     name: string;
-    quantity:number;
+    contact_number:number;
+    total_price:number;
     date: string;
   };
