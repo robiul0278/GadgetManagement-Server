@@ -14,9 +14,29 @@ const productSchema = new Schema<TSales>(
       type: Number,
       required: true,
     },
-    total_price: {
+    email: {
+      type: String,
+      required: true,
+    },
+    address: {
+      type: String,
+      required: true,
+    },
+    total_amounts: {
       type: Number,
       required: true,
+    },
+    quantity: {
+      type: Number,
+      required: true,
+    },
+    postal_code: {
+      type: Number,
+      required: true,
+    },
+    user: {
+      type: Schema.Types.ObjectId,
+      ref: 'User',
     },
   },
   {

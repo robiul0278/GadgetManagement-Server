@@ -2,7 +2,7 @@ import { TSales } from "./sales.interface";
 import { SaleModel } from "./sales.model";
 
 const getSaleProductFromDB = async () => {
-    const result = await SaleModel.find();
+    const result = await SaleModel.find().populate("user");
     return result;
   };
   

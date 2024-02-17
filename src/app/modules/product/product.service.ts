@@ -95,6 +95,7 @@ const findProductById = async (id: string) => {
 };
 
 const updateProductFromDB = async (id: string, payload: Partial<TProduct>) => {
+
   const result = await ProductModel.findByIdAndUpdate(id, payload, {
     new: true,
   });

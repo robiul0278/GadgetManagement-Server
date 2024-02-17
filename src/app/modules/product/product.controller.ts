@@ -83,14 +83,13 @@ const bulkDelete = catchAsync(async (req, res) => {
 
 const updateProduct = catchAsync(async (req, res) => {
   const id = req.params.id;
-
   // console.log(req.body)
   const product = await productServices.findProductById(id);
 
   if (!product) {
     throw new AppError(httpStatus.NOT_FOUND, 'Product not found');
   }
-  const result = await productServices.updateProductFromDB(id, req.body);
+  const result = await productServices.updateProductFromDB( id, req.body);
 
   sendResponse(res, {
     statusCode: httpStatus.OK,

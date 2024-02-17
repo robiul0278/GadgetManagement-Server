@@ -7,8 +7,12 @@ body: z.object({
     name: z.string(),
     date: z.string().optional(),
     contact_number: z.number(),
-    total_price: z.number(),
-
+    email: z.string(),
+    address: z.string(),
+    total_amounts: z.number(),
+    quantity: z.number(),
+    postal_code: z.number(),
+    user: z.string(),
 }),
 })
 
