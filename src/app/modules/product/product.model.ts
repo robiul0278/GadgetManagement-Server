@@ -58,6 +58,9 @@ const productSchema = new Schema<TProduct>(
       type: Schema.Types.ObjectId,
       ref: 'User',
     },
+    userId: {
+      type: Schema.Types.ObjectId,
+    },
   },
   {
     timestamps: true,

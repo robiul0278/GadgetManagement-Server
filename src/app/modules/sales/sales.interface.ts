@@ -10,4 +10,5 @@ export interface TSales {
     postal_code: number;
     date: string;
     user: Types.ObjectId;
+    userId: string;
   };

@@ -13,6 +13,7 @@ body: z.object({
     quantity: z.number(),
     postal_code: z.number(),
     user: z.string(),
+    userId: z.string(),
 }),
 })
 

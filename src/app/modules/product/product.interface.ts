@@ -16,4 +16,5 @@ export interface TProduct {
     features: string; 
     image?: string;
     user: Types.ObjectId;
+    userId: Types.ObjectId;
   };

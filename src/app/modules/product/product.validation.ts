@@ -15,7 +15,7 @@ body: z.object({
     power_source: z.string(),
     features: z.string(),
     user: z.string(),
-    image: z.string(),
+    userId: z.string(),
 }),
 })
 
@@ -31,7 +31,6 @@ export const productUpdateValidationSchema = z.object({
         connectivity: z.string().optional(),
         power_source: z.string().optional(),
         features: z.string().optional(),
-        image: z.string().optional()
     }),
     })
 
