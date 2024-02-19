@@ -26,5 +26,7 @@ Step 3: Start your development server
 npm run dev
 ```
 
+**Ready Server**
+Server Live : https://gadget-management-server.vercel.app/
 
 Now your application is ready to run
